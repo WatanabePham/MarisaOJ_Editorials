@@ -1,2 +1,2 @@
-# Marisa-x-Reimu-OJ
+# MarisaOJ Solutions
 Solutions
