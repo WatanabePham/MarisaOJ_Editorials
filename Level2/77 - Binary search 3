@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define ll          long long
+#define FOR(i,a,b)  for (int i=a; i<=b; ++i)
+#define FORD(i,a,b) for (int i=a; i>=b; --i)
+#define endl        cout << '\n'
+
+template<class X, class Y> 
+    bool maximize(X &x, const Y &y){return (x < y) ? x = y, 1 : 0;}
+
+template<class X, class Y> 
+    bool minimize(X &x, const Y &y){return (x > y) ? x = y, 1 : 0;}
+
+const int MAXN = 1e5 + 5;
+int n,q;
+int a[MAXN];
+
+signed main(void)
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr); cout.tie(nullptr);
+
+    cin >> n >> q;
+    FOR(i,1,n) cin >> a[i];
+
+    a[0] = 2e9;
+    while (q--)
+    {
+        int x;
+        cin >> x;
+        int idx = upper_bound(a+1,a+n+1,x) - a - 1;
+        if (a[idx] <= x) cout << idx << '\n';
+        else cout << "-1\n";
+    }
+
+    cerr << (1.0 * clock() / CLOCKS_PER_SEC) << "s\n";
+    return 0;
+}
