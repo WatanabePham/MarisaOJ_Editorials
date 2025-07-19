@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define ll          long long
+#define FOR(i,a,b)  for (int i = a; i <= b; ++i)
+#define FORD(i,a,b) for (int i = a; i >= b; --i)
+#define FILE(name)  if (fopen(name".INP", "r")){freopen(name".INP", "r", stdin); freopen(name".OUT", "w", stdout);}
+
+template <class X, class Y>
+    bool maximize(X &x, const Y &y){return (x < y) ? x = y, 1 : 0;}
+
+template <class X, class Y>
+    bool minimize(X &x, const Y &y){return (x > y) ? x = y, 1 : 0;}
+
+const int MAXN = 2e3;
+int n;
+int a[MAXN];
+
+signed main(void)
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr); cout.tie(nullptr);
+    FILE("");
+
+    cin >> n;
+    FOR(i,1,n) cin >> a[i];
+    sort(a+1,a+n+1);
+
+
+
+    ll res = 0;
+    FORD(i,n,3)
+    {
+        FORD(j,i-1,2)
+        {
+            ll x = upper_bound(a+1,a+j,a[i]-a[j])-a;
+            if (a[j] + a[x] > a[i] && x < j) res += j - x;
+            else break;
+        }
+    }
+    cout << res;
+
+    return 0;
+}
+/*
+6
+2 2 6 6 7 9
+
+
+3 5 6
+3 4 6
+1 4 5
+1 3 5
+1 3 4
+*/
